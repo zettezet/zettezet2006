@@ -1,0 +1,151 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #a1c4fd 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Hiệu ứng xuất hiện cho header */
+header {
+    background: linear-gradient(90deg, #fcb69f 0%, #ffecd2 100%);
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem;
+    border-bottom: 3px solid #a1c4fd;
+    box-shadow: 0 4px 16px #fcb69f55;
+    animation: fadeInDown 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+header h1 {
+    color: #ff6f61;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 8px #fff3;
+    animation: colorFlash 2.5s infinite alternate;
+}
+
+@keyframes colorFlash {
+    0% { color: #ff6f61; }
+    25% { color: #43e97b; }
+    50% { color: #38f9d7; }
+    75% { color: #fcb69f; }
+    100% { color: #ff6f61; }
+}
+
+header p {
+    color: #6dd5ed;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+main {
+    max-width: 650px;
+    margin: 2rem auto;
+    background: linear-gradient(120deg, #fcb69f88 0%, #a1c4fd88 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px #a1c4fd44;
+    padding: 2rem;
+    border: 2px solid #ffecd2;
+    animation: fadeInUp 1.2s 0.5s cubic-bezier(.68,-0.55,.27,1.55) both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+section {
+    margin-bottom: 2.5rem;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+section:hover {
+    box-shadow: 0 8px 32px #43e97b55, 0 0 20px #fcb69f55;
+    transform: translateY(-6px) scale(1.02);
+}
+
+h2 {
+    color: #43e97b;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 6px #fff8;
+}
+
+textarea {
+    width: 100%;
+    min-height: 90px;
+    border-radius: 12px;
+    border: 2px solid #43e97b;
+    padding: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    resize: vertical;
+    background: linear-gradient(90deg, #fcb69f33 0%, #a1c4fd33 100%);
+    box-shadow: 0 2px 8px #43e97b22;
+    color: #333;
+}
+
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 16px #38f9d7cc, 0 2px 8px #43e97b22;
+    border-color: #38f9d7;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+button#submit {
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.8rem 2.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px #43e97b44;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+button#submit:hover {
+    background: linear-gradient(90deg, #ff6f61 0%, #fcb69f 100%);
+    transform: scale(1.07);
+    box-shadow: 0 6px 24px #ff6f6144;
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0% { transform: scale(1.07) translateX(0); }
+    20% { transform: scale(1.07) translateX(-4px); }
+    40% { transform: scale(1.07) translateX(4px); }
+    60% { transform: scale(1.07) translateX(-2px); }
+    80% { transform: scale(1.07) translateX(2px); }
+    100% { transform: scale(1.07) translateX(0); }
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(90deg, #a1c4fd 0%, #fcb69f 100%);
+    color: #fff;
+    border-top: 3px solid #43e97b;
+    margin-top: 2rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 -2px 12px #a1c4fd44;
+}

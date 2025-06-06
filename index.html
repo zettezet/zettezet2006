@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Random Spin Game & Mini Games</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -191,6 +191,179 @@
             from { opacity: 0;}
             to { opacity: 1;}
         }
+        .taixiu-container {
+            margin-top: 60px;
+            text-align: center;
+            animation: fadeInUp 1s;
+        }
+        #taixiu-bet-area {
+            margin: 18px 0;
+        }
+        #taixiu-bet-area input[type="number"] {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #00ffe7;
+            width: 160px;
+            font-size: 1rem;
+            background: #232526;
+            color: #ffe066;
+            outline: none;
+            font-weight: bold;
+        }
+        #taixiu-bet-area input[type="number"]::-webkit-inner-spin-button,
+        #taixiu-bet-area input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        #taixiu-history table {
+            min-width: unset;
+            width: auto;
+            display: inline-table;
+        }
+        #taixiu-history tbody {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            justify-content: center;
+        }
+        #taixiu-history tr {
+            display: flex;
+            flex-direction: column;
+            background: #232526cc;
+            border-radius: 8px;
+            margin: 0 4px;
+            box-shadow: 0 0 6px #00ffe7;
+            min-width: 90px;
+        }
+        #taixiu-history td, #taixiu-history th {
+            border: none;
+            padding: 4px 8px;
+            text-align: center;
+            font-size: 0.98rem;
+        }
+        #taixiu-history thead {
+            display: none;
+        }
+        #taixiu-history {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 8px;
+        }
+        #taixiu-result-history {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 8px;
+        }
+        #taixiu-tx-history {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 8px;
+            flex-wrap: nowrap !important;
+            overflow-x: auto;
+            justify-content: flex-start !important;
+            padding-bottom: 8px;
+            white-space: nowrap;
+        }
+        #taixiu-tx-history span {
+            min-width: 60px;
+            text-align: center;
+        }
+        .taixiu-btn {
+            padding: 0.9rem 2.8rem;
+            font-size: 1.25rem;
+            border-radius: 16px;
+            border: none;
+            margin: 0 18px;
+            background: linear-gradient(90deg, #00ffe7 0%, #232526 100%);
+            color: #232526;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 18px #00ffe7, 0 2px 12px #232526, 0 0 32px #00ffe7 inset;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.2s, color 0.2s, box-shadow 0.3s;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .taixiu-btn::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 0; height: 0;
+            background: rgba(255,255,255,0.18);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+            z-index: 0;
+        }
+        .taixiu-btn:hover::before {
+            width: 220%;
+            height: 600%;
+        }
+        .taixiu-btn:hover {
+            background: linear-gradient(90deg, #ffe066 0%, #ff6f61 100%);
+            color: #232526;
+            transform: scale(1.11) rotate(-2deg);
+            box-shadow: 0 0 32px #ffe066, 0 2px 16px #ff6f61, 0 0 48px #ffe066 inset;
+        }
+        .taixiu-btn:active {
+            transform: scale(0.97);
+            filter: brightness(0.95);
+        }
+        .bet-amount-btn {
+            padding: 0.5rem 1.2rem;
+            margin: 0 6px 8px 0;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(90deg, #ffe066 0%, #00ffe7 100%);
+            color: #232526;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 0 8px #ffe066;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .bet-amount-btn.selected, .bet-amount-btn:hover {
+            background: linear-gradient(90deg, #ff6f61 0%, #ffe066 100%);
+            color: #fff;
+            transform: scale(1.08);
+        }
+        #dice-disk {
+            position: relative;
+            overflow: hidden;
+        }
+        #disk-cover {
+            user-select: none;
+        }
+        #disk-cover.opened {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+        #taixiu-history-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 28px;
+        }
+        .tab-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(90deg, #ffe066 0%, #00ffe7 100%);
+            color: #232526;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 0 8px #ffe066;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: linear-gradient(90deg, #ff6f61 0%, #ffe066 100%);
+            color: #fff;
+            transform: scale(1.08);
+        }
     </style>
 </head>
 <body>
@@ -202,12 +375,9 @@
         </div>
     </header>
     <main>
+        <!-- Vòng quay -->
         <div class="wheel-container">
-            <div id="icon-box" style="
-                display: flex;
-                gap: 18px;
-                margin-bottom: 32px;
-            ">
+            <div id="icon-box" style="display: flex; gap: 18px; margin-bottom: 32px;">
                 <div class="icon-cell">🎲</div>
                 <div class="icon-cell">🎲</div>
                 <div class="icon-cell">🎲</div>
@@ -215,6 +385,7 @@
             <button id="spinBtn">Quay số</button>
             <div id="result"></div>
         </div>
+        <!-- Lì xì -->
         <div class="minigame-container">
             <h2 style="color:#ffe066;text-shadow:0 0 8px #ff6f61;">Mini Game: Chọn Phong Bao Lì Xì</h2>
             <div id="envelope-box">
@@ -224,189 +395,637 @@
             </div>
             <div id="envelope-result"></div>
         </div>
+        <!-- Tài Xỉu -->
+        <div class="taixiu-container">
+            <h2 style="color:#00ffe7;text-shadow:0 0 8px #ffe066;">Mini Game: Tài Xỉu</h2>
+            <div id="taixiu-bet-area" style="margin:18px 0;">
+                <div style="margin-bottom:10px;">
+                    <button class="bet-amount-btn" data-amount="10">10</button>
+                    <button class="bet-amount-btn" data-amount="50">50</button>
+                    <button class="bet-amount-btn" data-amount="100">100</button>
+                    <button class="bet-amount-btn" data-amount="300">300</button>
+                    <button class="bet-amount-btn" data-amount="500">500</button>
+                </div>
+                <div style="margin-top:8px; color:#ffe066; font-size:1.1rem; letter-spacing:1px;">
+                    <b>Đặt cược</b>
+                </div>
+            </div>
+            <div id="taixiu-choice" style="margin:20px 0; display:flex; justify-content:center; gap:40px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <button class="taixiu-btn" data-choice="tai">Tài</button>
+                    <span id="bet-tai-amount" style="margin-top:6px; color:#ffe066; font-size:1.1rem; min-height:22px; display:block;"></span>
+                </div>
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <button class="taixiu-btn" data-choice="xiu">Xỉu</button>
+                    <span id="bet-xiu-amount" style="margin-top:6px; color:#ffe066; font-size:1.1rem; min-height:22px; display:block;"></span>
+                </div>
+            </div>
+            <div id="taixiu-dice-disk" style="display:flex;justify-content:center;align-items:center;margin:18px 0;">
+                <div id="dice-disk" style="width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#232526 60%,#00ffe7 100%);box-shadow:0 0 24px #00ffe7,0 0 8px #fff inset;display:flex;align-items:center;justify-content:center;position:relative;">
+                    <span id="taixiu-dice" style="font-size:2.5rem;min-width:80px;min-height:48px;transition:filter 0.2s;"></span>
+                    <div id="disk-cover" style="position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#ffe066;cursor:pointer;transition:opacity 0.3s;">MỞ ĐĨA</div>
+                </div>
+            </div>
+            <div id="taixiu-result" style="font-size:1.2rem; min-height:32px;"></div>
+            <div id="taixiu-history-tabs" style="display:flex; justify-content:center; gap:16px; margin-top:28px;">
+                <button id="btn-history" class="tab-btn active">Lịch sử cược</button>
+                <button id="btn-tx" class="tab-btn">Lịch sử ra Tài/Xỉu</button>
+            </div>
+            <div id="taixiu-history" style="margin-top:8px;">
+                <table>
+                    <tbody id="taixiu-history-body"></tbody>
+                </table>
+            </div>
+            <div id="taixiu-result-history" style="margin-top:8px; display:none;">
+                <div id="taixiu-tx-history"></div>
+            </div>
+        </div>
     </main>
     <footer style="text-align:center; margin-top:40px; color:#00ffe7; font-size:1.1rem; letter-spacing:2px; text-shadow:0 0 8px #00ffe7;">
         © 2025 zettezet
     </footer>
     <script>
-        const icons = ["🍀", "🍎", "🍉", "🍇", "🍋", "🍒", "⭐", "💎", "🎁", "🎲", "🧧", "🍀"];
-        const iconCells = document.querySelectorAll('.icon-cell');
-        const spinBtn = document.getElementById('spinBtn');
-        const result = document.getElementById('result');
-        const scoreDisplay = document.getElementById('score');
-        let intervals = [];
-        let running = false;
-        // Lấy điểm từ localStorage nếu có, nếu không thì là 0
-        let score = Number(localStorage.getItem('score')) || 0;
-        const scoreSpan = document.getElementById('score');
+    // ==== ĐIỂM CHUNG ====
+    let score = Number(localStorage.getItem('score')) || 0;
+    const scoreSpan = document.getElementById('score');
+    function updateScore(val) {
+        score += val;
+        if (score < 0) score = 0;
         scoreSpan.textContent = score;
+        localStorage.setItem('score', score);
+        updateScoreTx();
+    }
+    scoreSpan.textContent = score;
 
-        function updateScore(val) {
-            score += val;
-            if (score < 0) score = 0; // Không cho điểm âm
-            scoreSpan.textContent = score;
-            localStorage.setItem('score', score); // Lưu điểm vào localStorage
-        }
-
-        // Confetti effect
-        function showConfetti() {
-            const confetti = document.createElement('canvas');
-            confetti.className = 'confetti';
-            document.body.appendChild(confetti);
-            const ctx = confetti.getContext('2d');
-            confetti.width = window.innerWidth;
-            confetti.height = window.innerHeight;
-            let pieces = [];
-            for (let i = 0; i < 80; i++) {
-                pieces.push({
-                    x: Math.random() * confetti.width,
-                    y: Math.random() * -confetti.height,
-                    r: Math.random() * 8 + 4,
-                    d: Math.random() * 80 + 40,
-                    color: `hsl(${Math.random()*360},90%,60%)`,
-                    tilt: Math.random() * 10 - 10
-                });
-            }
-            let angle = 0;
-            function draw() {
-                ctx.clearRect(0,0,confetti.width,confetti.height);
-                angle += 0.01;
-                for (let i = 0; i < pieces.length; i++) {
-                    let p = pieces[i];
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-                    ctx.fillStyle = p.color;
-                    ctx.fill();
-                    p.y += Math.cos(angle + p.d) + 2 + p.r/2;
-                    p.x += Math.sin(angle) * 2;
-                    if (p.y > confetti.height) {
-                        p.y = Math.random() * -20;
-                        p.x = Math.random() * confetti.width;
-                    }
-                }
-                if (angle < 2.5) requestAnimationFrame(draw);
-                else setTimeout(()=>confetti.remove(), 800);
-            }
-            draw();
-        }
-
-        spinBtn.onclick = function () {
-            if (running) return;
-            running = true;
-            result.textContent = '';
-            spinBtn.disabled = true;
-
-            // Xóa hiệu ứng cũ
-            iconCells.forEach(cell => cell.classList.remove('active'));
-
-            // Quay từng ô
-            intervals = [];
-            let finalIcons = [];
-
-            // Tăng tỉ lệ trùng 3 ô: 2% xác suất sẽ trùng cả 3
-            let isTriple = Math.random() < 0.02;
-            let tripleIcon = icons[Math.floor(Math.random() * icons.length)];
-
-            iconCells.forEach((cell, idx) => {
-                intervals[idx] = setInterval(() => {
-                    const icon = icons[Math.floor(Math.random() * icons.length)];
-                    cell.textContent = icon;
-                }, 60 + idx * 30);
-            });
-
-            iconCells.forEach((cell, idx) => {
-                setTimeout(() => {
-                    clearInterval(intervals[idx]);
-                    let icon;
-                    if (isTriple) {
-                        icon = tripleIcon;
-                    } else {
-                        icon = icons[Math.floor(Math.random() * icons.length)];
-                    }
-                    cell.textContent = icon;
-                    cell.classList.add('active');
-                    finalIcons[idx] = icon;
-                    // Khi ô cuối cùng dừng thì hiển thị kết quả
-                    if (idx === 2) {
-                        setTimeout(() => {
-                            result.style.transform = "scale(1.2)";
-                            result.style.transition = "transform 0.3s";
-                            result.textContent = `Kết quả: ${finalIcons.join(' ')}`;
-                            // Nếu cả 3 ô giống nhau, tặng quà ngẫu nhiên + confetti
-                            if (finalIcons[0] === finalIcons[1] && finalIcons[1] === finalIcons[2]) {
-                                const gifts = [
-                                    "🎉 Bạn nhận được 1 phần quà đặc biệt!",
-                                    "🍀 May mắn nhân đôi hôm nay!",
-                                    "🎁 Nhận thêm lượt quay miễn phí!",
-                                    "💎 Nhận được viên kim cương may mắn!",
-                                    "⭐ Bạn là người cực kỳ may mắn!"
-                                ];
-                                const gift = gifts[Math.floor(Math.random() * gifts.length)];
-                                result.textContent += `\n${gift}`;
-                                updateScore(10); // +10 điểm
-                                showConfetti();
-                            }
-                            setTimeout(()=>{
-                                result.style.transform = "scale(1)";
-                            }, 400);
-                            running = false;
-                            spinBtn.disabled = false;
-                        }, 300);
-                    }
-                }, 1800 + idx * 350);
-            });
-        };
-
-        // Mini game logic
-        const envelopes = document.querySelectorAll('.envelope');
-        const envelopeResult = document.getElementById('envelope-result');
-        let luckyIndex = Math.floor(Math.random() * 3);
-        let found = false;
-
-        envelopes.forEach((env, idx) => {
-            env.onclick = function () {
-                if (found || env.classList.contains('opened')) return;
-                env.classList.add('opened', 'disabled');
-                setTimeout(() => {
-                    if (idx === luckyIndex) {
-                        found = true;
-                        showCongrats();
-                    } else {
-                        env.textContent = "💣";
-                        envelopeResult.textContent = "Ôi không! Bạn đã chọn phải quả bom! Hãy thử lại với phong bao khác.";
-                        updateScore(-3); // Trừ 3 điểm nếu chọn phải bom
-                        setTimeout(() => {
-                            resetEnvelopes();
-                        }, 1000); // Sau 1 giây reset để chơi tiếp
-                    }
-                }, 400);
-            };
+    // ==== VÒNG QUAY ====
+    const icons = ["🍀", "🍎", "🍉", "🍇", "🍋", "🍒", "⭐", "💎", "🎁", "🎲", "🧧", "🍀"];
+    const iconCells = document.querySelectorAll('.icon-cell');
+    const spinBtn = document.getElementById('spinBtn');
+    const result = document.getElementById('result');
+    let intervals = [];
+    let running = false;
+    spinBtn.onclick = function () {
+        if (running) return;
+        running = true;
+        result.textContent = '';
+        spinBtn.disabled = true;
+        iconCells.forEach(cell => cell.classList.remove('active'));
+        intervals = [];
+        let finalIcons = [];
+        let isTriple = Math.random() < 0.02;
+        let tripleIcon = icons[Math.floor(Math.random() * icons.length)];
+        iconCells.forEach((cell, idx) => {
+            intervals[idx] = setInterval(() => {
+                const icon = icons[Math.floor(Math.random() * icons.length)];
+                cell.textContent = icon;
+            }, 60 + idx * 30);
         });
-
-        function showCongrats() {
-            const modal = document.createElement('div');
-            modal.className = 'congrats-modal';
-            modal.innerHTML = `<div class="congrats-content">🎉 Xin chúc mừng!<br>Bạn đã chọn đúng lì xì! 🧧</div>`;
-            document.body.appendChild(modal);
+        iconCells.forEach((cell, idx) => {
             setTimeout(() => {
-                modal.onclick = () => {
-                    modal.remove();
-                    resetEnvelopes();
-                };
-            }, 800);
-            envelopeResult.textContent = "";
-            updateScore(5); // +5 điểm
-        }
-
-        function resetEnvelopes() {
-            envelopes.forEach(e => {
-                e.classList.remove('opened', 'disabled');
-                e.textContent = "🧧";
+                clearInterval(intervals[idx]);
+                let icon = isTriple ? tripleIcon : icons[Math.floor(Math.random() * icons.length)];
+                cell.textContent = icon;
+                cell.classList.add('active');
+                finalIcons[idx] = icon;
+                if (idx === 2) {
+                    setTimeout(() => {
+                        result.style.transform = "scale(1.2)";
+                        result.style.transition = "transform 0.3s";
+                        result.textContent = `Kết quả: ${finalIcons.join(' ')}`;
+                        if (finalIcons[0] === finalIcons[1] && finalIcons[1] === finalIcons[2]) {
+                            const gifts = [
+                                "🎉 Bạn nhận được 1 phần quà đặc biệt!",
+                                "🍀 May mắn nhân đôi hôm nay!",
+                                "🎁 Nhận thêm lượt quay miễn phí!",
+                                "💎 Nhận được viên kim cương may mắn!",
+                                "⭐ Bạn là người cực kỳ may mắn!"
+                            ];
+                            const gift = gifts[Math.floor(Math.random() * gifts.length)];
+                            result.textContent += `\n${gift}`;
+                            updateScore(10);
+                            showConfetti();
+                        }
+                        setTimeout(()=>{result.style.transform = "scale(1)";}, 400);
+                        running = false;
+                        spinBtn.disabled = false;
+                    }, 300);
+                }
+            }, 1800 + idx * 350);
+        });
+    };
+    function showConfetti() {
+        const confetti = document.createElement('canvas');
+        confetti.className = 'confetti';
+        document.body.appendChild(confetti);
+        const ctx = confetti.getContext('2d');
+        confetti.width = window.innerWidth;
+        confetti.height = window.innerHeight;
+        let pieces = [];
+        for (let i = 0; i < 80; i++) {
+            pieces.push({
+                x: Math.random() * confetti.width,
+                y: Math.random() * -confetti.height,
+                r: Math.random() * 8 + 4,
+                d: Math.random() * 80 + 40,
+                color: `hsl(${Math.random()*360},90%,60%)`,
+                tilt: Math.random() * 10 - 10
             });
-            luckyIndex = Math.floor(Math.random() * 3);
-            found = false;
-            envelopeResult.textContent = "";
         }
+        let angle = 0;
+        function draw() {
+            ctx.clearRect(0,0,confetti.width,confetti.height);
+            angle += 0.01;
+            for (let i = 0; i < pieces.length; i++) {
+                let p = pieces[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                p.y += Math.cos(angle + p.d) + 2 + p.r/2;
+                p.x += Math.sin(angle) * 2;
+                if (p.y > confetti.height) {
+                    p.y = Math.random() * -20;
+                    p.x = Math.random() * confetti.width;
+                }
+            }
+            if (angle < 2.5) requestAnimationFrame(draw);
+            else setTimeout(()=>confetti.remove(), 800);
+        }
+        draw();
+    }
+
+    // ==== LÌ XÌ ====
+    const envelopes = document.querySelectorAll('.envelope');
+    const envelopeResult = document.getElementById('envelope-result');
+    let luckyIndex = Math.floor(Math.random() * 3);
+    let found = false;
+    envelopes.forEach((env, idx) => {
+        env.onclick = function () {
+            if (found || env.classList.contains('opened')) return;
+            env.classList.add('opened', 'disabled');
+            setTimeout(() => {
+                if (idx === luckyIndex) {
+                    found = true;
+                    showCongrats();
+                } else {
+                    env.textContent = "💣";
+                    envelopeResult.textContent = "Ôi không! Bạn đã chọn phải quả bom! Hãy thử lại với phong bao khác.";
+                    updateScore(-3);
+                    setTimeout(() => { resetEnvelopes(); }, 1000);
+                }
+            }, 400);
+        };
+    });
+    function showCongrats() {
+        const modal = document.createElement('div');
+        modal.className = 'congrats-modal';
+        modal.innerHTML = `<div class="congrats-content">🎉 Xin chúc mừng!<br>Bạn đã chọn đúng lì xì! 🧧</div>`;
+        document.body.appendChild(modal);
+        setTimeout(() => {
+            modal.onclick = () => {
+                modal.remove();
+                resetEnvelopes();
+            };
+        }, 800);
+        envelopeResult.textContent = "";
+        updateScore(5);
+    }
+    function resetEnvelopes() {
+        envelopes.forEach(e => {
+            e.classList.remove('opened', 'disabled');
+            e.textContent = "🧧";
+        });
+        luckyIndex = Math.floor(Math.random() * 3);
+        found = false;
+        envelopeResult.textContent = "";
+    }
+
+    // ==== TÀI XỈU ====
+    const diceEmojis = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+    const taixiuBtns = document.querySelectorAll('.taixiu-btn');
+    const taixiuDice = document.getElementById('taixiu-dice');
+    const taixiuResult = document.getElementById('taixiu-result');
+    const scoreTx = document.getElementById('score-tx');
+    const taixiuHistoryBody = document.getElementById('taixiu-history-body');
+    const taixiuTxHistory = document.getElementById('taixiu-tx-history');
+    const betTaiAmount = document.getElementById('bet-tai-amount');
+    const betXiuAmount = document.getElementById('bet-xiu-amount');
+    const betBtns = document.querySelectorAll('.bet-amount-btn');
+    let taixiuBetInput = document.getElementById('taixiu-bet');
+    if (!taixiuBetInput) {
+        taixiuBetInput = document.createElement('input');
+        taixiuBetInput.type = "hidden";
+        taixiuBetInput.id = "taixiu-bet";
+        document.getElementById('taixiu-bet-area').appendChild(taixiuBetInput);
+    }
+    function updateBetAmountDisplay() {
+        const val = taixiuBetInput.value;
+        betTaiAmount.textContent = val ? `Cược: ${val}` : '';
+        betXiuAmount.textContent = val ? `Cược: ${val}` : '';
+    }
+    betBtns.forEach(btn => {
+        btn.onclick = function() {
+            betBtns.forEach(b=>b.classList.remove('selected'));
+            btn.classList.add('selected');
+            taixiuBetInput.value = btn.dataset.amount;
+            updateBetAmountDisplay();
+        }
+    });
+    function resetBetAmountDisplay() {
+        betTaiAmount.textContent = '';
+        betXiuAmount.textContent = '';
+        taixiuBetInput.value = '';
+        betBtns.forEach(b=>b.classList.remove('selected'));
+    }
+    // Điểm tài xỉu
+    function updateScoreTx() {
+        if (scoreTx) scoreTx.textContent = score;
+    }
+    updateScoreTx();
+
+    // Lịch sử tài xỉu
+    let taixiuHistory = [];
+    let taixiuTxArr = [];
+    try {
+        taixiuHistory = JSON.parse(localStorage.getItem('taixiuHistory') || "[]");
+        taixiuTxArr = JSON.parse(localStorage.getItem('taixiuTxHistory') || "[]");
+    } catch(e) {
+        taixiuHistory = [];
+        taixiuTxArr = [];
+    }
+    function saveTaixiuHistory(history) {
+        localStorage.setItem('taixiuHistory', JSON.stringify(history));
+    }
+    function saveTaixiuTxHistory(txHistory) {
+        localStorage.setItem('taixiuTxHistory', JSON.stringify(txHistory));
+    }
+    function renderTaixiuHistory() {
+        // Nếu lịch sử quá 10, chỉ giữ lại 10 dòng mới nhất
+        if (taixiuHistory.length > 10) {
+            taixiuHistory = taixiuHistory.slice(-10);
+            saveTaixiuHistory(taixiuHistory);
+        }
+        taixiuHistoryBody.innerHTML = taixiuHistory.map((item, idx) => `
+            <tr>
+                <td>${idx+1}</td>
+                <td>${item.betType === "tai" ? "Tài" : "Xỉu"}</td>
+                <td>${item.betPoint}</td>
+                <td>${item.resultType === "tai" ? "Tài" : "Xỉu"}</td>
+                <td>${item.sum} (${item.dice.join(' ')})</td>
+                <td style="color:${item.win ? '#ffe066':'#ff6f61'};font-weight:bold;">
+                    ${item.win ? 'Thắng' : 'Thua'}
+                </td>
+            </tr>
+        `).reverse().join('');
+    }
+    function renderTaixiuTxHistory() {
+        taixiuTxHistory.innerHTML = taixiuTxArr.slice(-20).map(type =>
+            `<span class="${type}">${type === "tai" ? "Tài" : "Xỉu"}</span>`
+        ).reverse().join('');
+    }
+    renderTaixiuHistory();
+    renderTaixiuTxHistory();
+
+    // Tab chuyển đổi giữa lịch sử cược và lịch sử ra Tài/Xỉu
+    const btnHistory = document.getElementById('btn-history');
+    const btnTx = document.getElementById('btn-tx');
+    const taixiuHistoryDiv = document.getElementById('taixiu-history');
+    const taixiuResultHistoryDiv = document.getElementById('taixiu-result-history');
+
+    btnHistory.onclick = function() {
+        btnHistory.classList.add('active');
+        btnTx.classList.remove('active');
+        taixiuHistoryDiv.style.display = '';
+        taixiuResultHistoryDiv.style.display = 'none';
+    };
+    btnTx.onclick = function() {
+        btnTx.classList.add('active');
+        btnHistory.classList.remove('active');
+        taixiuHistoryDiv.style.display = 'none';
+        taixiuResultHistoryDiv.style.display = '';
+    };
+
+    // Timer
+    let betTimer = null, rollTimer = null, betTimeLeft = 0, rollTimeLeft = 0;
+    const betTimeTotal = 30, rollTimeTotal = 10;
+    let betCountdown = document.getElementById('bet-countdown');
+    if (!betCountdown) {
+        betCountdown = document.createElement('div');
+        betCountdown.id = 'bet-countdown';
+        betCountdown.style.color = "#ffe066";
+        betCountdown.style.fontSize = "1.1rem";
+        betCountdown.style.margin = "8px 0";
+        betCountdown.style.fontWeight = "bold";
+        document.getElementById('taixiu-bet-area').appendChild(betCountdown);
+    }
+    let rollCountdown = document.getElementById('roll-countdown');
+    if (!rollCountdown) {
+        rollCountdown = document.createElement('div');
+        rollCountdown.id = 'roll-countdown';
+        rollCountdown.style.color = "#00ffe7";
+        rollCountdown.style.fontSize = "1.1rem";
+        rollCountdown.style.margin = "8px 0";
+        rollCountdown.style.fontWeight = "bold";
+        document.getElementById('taixiu-dice-disk').appendChild(rollCountdown);
+    }
+    function startBetTimer() {
+        clearInterval(betTimer);
+        betTimeLeft = betTimeTotal;
+        betCountdown.textContent = `⏳ Thời gian đặt cược: ${betTimeLeft}s`;
+        taixiuBtns.forEach(b=>b.disabled=false);
+        betBtns.forEach(b=>b.disabled=false);
+        betTimer = setInterval(() => {
+            betTimeLeft--;
+            betCountdown.textContent = `⏳ Thời gian đặt cược: ${betTimeLeft}s`;
+            if (betTimeLeft <= 0) {
+                clearInterval(betTimer);
+                betCountdown.textContent = "⏰ Hết thời gian đặt cược!";
+                taixiuBtns.forEach(b=>b.disabled=true);
+                betBtns.forEach(b=>b.disabled=true);
+
+                // --- Thêm: Sinh kết quả random và cập nhật lịch sử ---
+                // Nếu người chơi không đặt cược, vẫn random kết quả và cập nhật lịch sử ra tài/xỉu
+                let d1 = Math.floor(Math.random()*6)+1;
+                let d2 = Math.floor(Math.random()*6)+1;
+                let d3 = Math.floor(Math.random()*6)+1;
+                let sum = d1 + d2 + d3;
+                let resultType = (sum>=11 && sum<=17) ? "tai" : "xiu";
+                taixiuTxArr.push(resultType);
+                if (taixiuTxArr.length > 50) taixiuTxArr = taixiuTxArr.slice(-50);
+                saveTaixiuTxHistory(taixiuTxArr);
+                renderTaixiuTxHistory();
+
+                // Sau 1.5s tự động bắt đầu lại vòng cược mới
+                setTimeout(() => {
+                    resetBetAmountDisplay();
+                    resetDiskPosition();
+                    taixiuResult.textContent = "";
+                    startBetTimer();
+                }, 1500);
+            }
+        }, 1000);
+    }
+    function startRollTimer() {
+        clearInterval(rollTimer);
+        rollTimeLeft = 3; // Đổi từ 10s thành 3s
+        rollCountdown.textContent = `⏳ Đang lắc xúc xắc: ${rollTimeLeft}s`;
+        rollTimer = setInterval(() => {
+            rollTimeLeft--;
+            rollCountdown.textContent = `⏳ Đang lắc xúc xắc: ${rollTimeLeft}s`;
+            if (rollTimeLeft <= 0) {
+                clearInterval(rollTimer);
+                rollCountdown.textContent = "";
+                // KHÔNG tự động mở đĩa nữa, chỉ dừng lắc và cho phép người chơi mở đĩa thủ công
+                // diskReady vẫn giữ true để cho phép kéo/mở đĩa
+            }
+        }, 1000);
+    }
+    function resetTimers() {
+        clearInterval(betTimer);
+        clearInterval(rollTimer);
+        betCountdown.textContent = "";
+        rollCountdown.textContent = "";
+    }
+    // Đĩa xúc xắc
+    let betChoice = null, betPoint = null, diceResult = null, diskReady = false;
+    // Cho phép kéo đĩa ra chỗ khác nhưng xúc xắc vẫn nằm ở giữa
+    let isDragging = false, startX = 0, startY = 0, diskStartLeft = 0, diskStartTop = 0;
+    const diceDisk = document.getElementById('dice-disk');
+    const diskCover = document.getElementById('disk-cover');
+    function resetDiskPosition() {
+        diceDisk.style.position = "relative";
+        diceDisk.style.left = "0px";
+        diceDisk.style.top = "0px";
+        diskCover.classList.remove('opened');
+    }
+    // Thay thế phần kéo đĩa bằng click để mở đĩa (không cần di chuyển)
+    diskCover.onmousedown = null; // Xóa sự kiện kéo cũ nếu có
+    document.onmousemove = null;
+    document.onmouseup = null;
+
+    diskCover.onclick = function() {
+        if (!diskReady || !betChoice || !diceResult) return;
+        openDiskResult();
+    };
+
+    // Đảm bảo diskCover có thể kéo, nhưng chỉ kéo diskCover, không kéo diceDisk
+    diskCover.onmousedown = function(e) {
+        if (!diskReady || !betChoice || !diceResult) return;
+        isDragging = true;
+        diskCover.style.position = "absolute";
+        diskCover.style.zIndex = 10;
+        startX = e.clientX;
+        startY = e.clientY;
+        diskStartLeft = parseInt(diskCover.style.left || 0);
+        diskStartTop = parseInt(diskCover.style.top || 0);
+        document.body.style.userSelect = "none";
+    };
+    document.onmousemove = function(e) {
+        if (!isDragging) return;
+        let dx = e.clientX - startX;
+        let dy = e.clientY - startY;
+        diskCover.style.left = (diskStartLeft + dx) + "px";
+        diskCover.style.top = (diskStartTop + dy) + "px";
+    };
+    document.onmouseup = function() {
+        if (isDragging) {
+            // Khi kéo đủ xa (ví dụ 80px), mở đĩa (ẩn diskCover)
+            let left = parseInt(diskCover.style.left || 0);
+            let top = parseInt(diskCover.style.top || 0);
+            if (Math.abs(left) > 80 || Math.abs(top) > 80) {
+                openDiskResult();
+                // Đặt lại vị trí diskCover về giữa cho lần sau
+                setTimeout(() => {
+                    diskCover.style.left = "0px";
+                    diskCover.style.top = "0px";
+                    diskCover.style.position = "absolute";
+                    diskCover.style.zIndex = "";
+                }, 1500);
+            }
+        }
+        isDragging = false;
+        document.body.style.userSelect = "";
+    };
+
+    function openDiskResult() {
+        diskCover.classList.add('opened');
+        clearInterval(rollTimer);
+        rollCountdown.textContent = "";
+        let sum = diceResult.d1 + diceResult.d2 + diceResult.d3;
+        let resultType = (sum>=11 && sum<=17) ? "tai" : "xiu";
+        let msg = `Tổng: ${sum} (${resultType === "tai" ? "Tài" : "Xỉu"})`;
+        let win = betChoice === resultType;
+        if(win) {
+            taixiuResult.textContent = `🎉 Bạn thắng! ${msg} (+${betPoint} điểm)`;
+            updateScore(betPoint);
+        } else {
+            taixiuResult.textContent = `😢 Bạn thua! ${msg} (-${betPoint} điểm)`;
+            updateScore(-betPoint);
+        }
+        taixiuHistory.push({
+            betType: betChoice,
+            betPoint,
+            resultType,
+            sum,
+            dice: [diceResult.d1, diceResult.d2, diceResult.d3],
+            win
+        });
+        if (taixiuHistory.length > 30) taixiuHistory = taixiuHistory.slice(-30);
+        saveTaixiuHistory(taixiuHistory);
+        renderTaixiuHistory();
+        taixiuTxArr.push(resultType);
+        if (taixiuTxArr.length > 50) taixiuTxArr = taixiuTxArr.slice(-50);
+        saveTaixiuTxHistory(taixiuTxArr);
+        renderTaixiuTxHistory();
+        updateScoreTx();
+        // Giữ xúc xắc lại 3s rồi mới reset giao diện và cho cược tiếp
+        setTimeout(()=>{ taixiuBtns.forEach(b=>b.disabled=false); betBtns.forEach(b=>b.disabled=false); }, 3000);
+        betChoice = null;
+        betPoint = null;
+        diceResult = null;
+        diskReady = false;
+        resetBetAmountDisplay();
+        setTimeout(()=>{
+            taixiuResult.textContent = "";
+            diskCover.classList.remove('opened');
+            diskCover.style.left = "0px";
+            diskCover.style.top = "0px";
+            diskCover.style.position = "absolute";
+            diskCover.style.zIndex = "";
+            startBetTimer();
+        }, 3000);
+    }
+    // Khi chọn Tài/Xỉu
+    taixiuBtns.forEach(btn => {
+        btn.onclick = function () {
+            if (betTimeLeft <= 0) return;
+            taixiuResult.textContent = "";
+            taixiuDice.textContent = "🎲🎲🎲";
+            taixiuBtns.forEach(b=>b.disabled=true);
+            betBtns.forEach(b=>b.disabled=true);
+            betPoint = parseInt(taixiuBetInput.value, 10);
+            if (isNaN(betPoint) || ![10,50,100,300,500].includes(betPoint)) {
+                taixiuResult.textContent = "Vui lòng chọn mức cược hợp lệ!";
+                taixiuBtns.forEach(b=>b.disabled=false);
+                betBtns.forEach(b=>b.disabled=false);
+                return;
+            }
+            if (betPoint > score) {
+                taixiuResult.textContent = "Bạn không đủ điểm để cược!";
+                taixiuBtns.forEach(b=>b.disabled=false);
+                betBtns.forEach(b=>b.disabled=false);
+                return;
+            }
+            betChoice = btn.dataset.choice;
+            let rollCount = 0;
+            diceResult = null;
+            diskCover.classList.remove('opened');
+            taixiuDice.textContent = "🎲🎲🎲";
+            diskReady = false;
+            clearInterval(betTimer);
+            betCountdown.textContent = "";
+            startRollTimer();
+            let rollInterval = setInterval(()=>{
+                taixiuDice.textContent = 
+                    diceEmojis[Math.floor(Math.random()*6)] +
+                    diceEmojis[Math.floor(Math.random()*6)] +
+                    diceEmojis[Math.floor(Math.random()*6)];
+                rollCount++;
+                if(rollCount > 10) {
+                    clearInterval(rollInterval);
+                    let d1 = Math.floor(Math.random()*6)+1;
+                    let d2 = Math.floor(Math.random()*6)+1;
+                    let d3 = Math.floor(Math.random()*6)+1;
+                    diceResult = {d1, d2, d3};
+                    taixiuDice.textContent = diceEmojis[d1-1] + diceEmojis[d2-1] + diceEmojis[d3-1];
+                    diskReady = true;
+                }
+            }, 80);
+        }
+    });
+    startBetTimer();
+
+    // ==== ĐIỂM DANH 7 NGÀY ====
+    function getTodayStr() {
+        const now = new Date();
+        return now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate();
+    }
+    function getDayIndex() {
+        // Trả về số ngày đã điểm danh liên tiếp (0-6)
+        let streak = Number(localStorage.getItem('checkinStreak')) || 0;
+        return streak % 7;
+    }
+    function canCheckin() {
+        const lastCheckin = localStorage.getItem('lastCheckinDate');
+        const now = Date.now();
+        if (!lastCheckin) return true;
+        // 24h = 86400000 ms
+        return (now - Number(lastCheckin)) > 86400000;
+    }
+    function setCheckin() {
+        localStorage.setItem('lastCheckinDate', Date.now());
+        let streak = Number(localStorage.getItem('checkinStreak')) || 0;
+        streak++;
+        localStorage.setItem('checkinStreak', streak);
+    }
+    function resetCheckinIfNeeded() {
+        // Nếu qua 2 ngày không điểm danh thì reset streak
+        const lastCheckin = localStorage.getItem('lastCheckinDate');
+        if (!lastCheckin) return;
+        const now = Date.now();
+        if ((now - Number(lastCheckin)) > 2*86400000) {
+            localStorage.setItem('checkinStreak', 0);
+        }
+    }
+
+    // Tạo giao diện điểm danh
+    function renderCheckinBox() {
+        let checkinBox = document.getElementById('checkin-box');
+        if (!checkinBox) {
+            checkinBox = document.createElement('div');
+            checkinBox.id = 'checkin-box';
+            checkinBox.style = "margin:32px auto 0 auto;max-width:420px;background:#232526cc;border-radius:16px;padding:18px 12px 12px 12px;box-shadow:0 0 16px #00ffe7;text-align:center;";
+            document.body.insertBefore(checkinBox, document.body.firstChild.nextSibling);
+        }
+        let streak = Number(localStorage.getItem('checkinStreak')) || 0;
+        let dayIdx = getDayIndex();
+        let lastCheckin = localStorage.getItem('lastCheckinDate');
+        let can = canCheckin();
+        let days = [];
+        for (let i=0; i<7; i++) {
+            days.push(`<div style="display:inline-block;width:48px;height:48px;line-height:48px;margin:0 4px;border-radius:12px;
+                background:${i<streak%7 ? '#ffe066':'#232526'};color:${i<streak%7 ? '#232526':'#ffe066'};font-weight:bold;
+                border:2px solid #00ffe7;font-size:1.2rem;box-shadow:0 0 8px #00ffe7;">
+                ${i+1}
+            </div>`);
+        }
+        checkinBox.innerHTML = `
+            <div style="font-size:1.2rem;color:#00ffe7;font-weight:bold;margin-bottom:8px;letter-spacing:1px;">
+                Điểm danh 7 ngày - Nhận điểm miễn phí mỗi ngày!
+            </div>
+            <div>${days.join('')}</div>
+            <button id="btn-checkin" style="margin-top:14px;padding:0.7rem 2.2rem;font-size:1.1rem;border-radius:10px;border:none;background:linear-gradient(90deg,#ffe066 0%,#00ffe7 100%);color:#232526;font-weight:bold;box-shadow:0 0 8px #00ffe7;cursor:pointer;transition:background 0.2s;">${can ? 'Điểm danh nhận điểm' : 'Đã điểm danh'}</button>
+            <div id="checkin-msg" style="margin-top:8px;min-height:24px;color:#ffe066;font-size:1.1rem;"></div>
+        `;
+        const btnCheckin = document.getElementById('btn-checkin');
+        const checkinMsg = document.getElementById('checkin-msg');
+        btnCheckin.disabled = !can;
+        btnCheckin.onclick = function() {
+            if (!canCheckin()) {
+                checkinMsg.textContent = "Bạn đã điểm danh hôm nay. Hãy quay lại sau 24h!";
+                return;
+            }
+            const point = Math.floor(Math.random()*91)+10; // 10-100 điểm
+            updateScore(point);
+            setCheckin();
+            renderCheckinBox();
+            checkinMsg.textContent = `🎉 Bạn nhận được ${point} điểm!`;
+        };
+    }
+
+    // Khởi tạo điểm danh khi load trang
+    resetCheckinIfNeeded();
+    renderCheckinBox();
     </script>
 </body>
 </html>

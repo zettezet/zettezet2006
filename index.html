@@ -847,6 +847,47 @@
         document.body.style.userSelect = "";
     };
 
+    // --- HỖ TRỢ KÉO ĐĨA TRÊN SMARTPHONE (TOUCH EVENTS) ---
+    diskCover.addEventListener('touchstart', function(e) {
+        if (!diskReady || !betChoice || !diceResult) return;
+        isDragging = true;
+        diskCover.style.position = "absolute";
+        diskCover.style.zIndex = 10;
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        diskStartLeft = parseInt(diskCover.style.left || 0);
+        diskStartTop = parseInt(diskCover.style.top || 0);
+        document.body.style.userSelect = "none";
+    }, {passive: false});
+
+    document.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        let dx = touch.clientX - startX;
+        let dy = touch.clientY - startY;
+        diskCover.style.left = (diskStartLeft + dx) + "px";
+        diskCover.style.top = (diskStartTop + dy) + "px";
+    }, {passive: false});
+
+    document.addEventListener('touchend', function() {
+        if (isDragging) {
+            let left = parseInt(diskCover.style.left || 0);
+            let top = parseInt(diskCover.style.top || 0);
+            if (Math.abs(left) > 80 || Math.abs(top) > 80) {
+                openDiskResult();
+                setTimeout(() => {
+                    diskCover.style.left = "0px";
+                    diskCover.style.top = "0px";
+                    diskCover.style.position = "absolute";
+                    diskCover.style.zIndex = "";
+                }, 1500);
+            }
+        }
+        isDragging = false;
+        document.body.style.userSelect = "";
+    }, {passive: false});
+
     function openDiskResult() {
         diskCover.classList.add('opened');
         clearInterval(rollTimer);

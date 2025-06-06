@@ -1067,6 +1067,31 @@
     // Khởi tạo điểm danh khi load trang
     resetCheckinIfNeeded();
     renderCheckinBox();
+
+    // --- Lưu kết quả random ra Tài/Xỉu mỗi khi reload hoặc mở lại web ---
+    (function autoRandomTaiXiuOnReload() {
+        // Lấy thời điểm lần cuối random
+        let lastRandomTime = Number(localStorage.getItem('lastTaiXiuRandomTime')) || 0;
+        let now = Date.now();
+        // Nếu đã qua ít nhất 1 vòng cược (ví dụ 35s), thì random thêm kết quả mới cho mỗi lần reload
+        // Bạn có thể chỉnh 35000 thành thời gian 1 vòng cược thực tế (30s cược + 3s lắc + buffer)
+        if (now - lastRandomTime > 35000) {
+            let d1 = Math.floor(Math.random()*6)+1;
+            let d2 = Math.floor(Math.random()*6)+1;
+            let d3 = Math.floor(Math.random()*6)+1;
+            let sum = d1 + d2 + d3;
+            let resultType = (sum>=11 && sum<=17) ? "tai" : "xiu";
+            // Lưu vào lịch sử ra tài/xỉu
+            let taixiuTxArr = [];
+            try {
+                taixiuTxArr = JSON.parse(localStorage.getItem('taixiuTxHistory') || "[]");
+            } catch(e) { taixiuTxArr = []; }
+            taixiuTxArr.push(resultType);
+            if (taixiuTxArr.length > 50) taixiuTxArr = taixiuTxArr.slice(-50);
+            localStorage.setItem('taixiuTxHistory', JSON.stringify(taixiuTxArr));
+            localStorage.setItem('lastTaiXiuRandomTime', now);
+        }
+    })();
     </script>
 </body>
 </html>

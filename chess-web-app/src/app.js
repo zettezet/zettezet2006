@@ -40,8 +40,8 @@ levelDiv.id = 'level-select';
 document.body.insertBefore(levelDiv, board);
 
 // Thêm đồng hồ cho mỗi bên
-let whiteTime = 60; // giây
-let blackTime = 60; // giây
+let whiteTime = 300; // giây
+let blackTime = 300; // giây
 let timerInterval = null;
 
 // Thêm vùng hiển thị đồng hồ
@@ -117,11 +117,11 @@ function onCellClick(e) {
                             setTimeout(() => {
                                 alert('Bạn đã thắng!');
                                 let add = aiLevel === 1 ? 10 : aiLevel === 2 ? 50 : 100;
-chessScore += add;
-saveChessScore();
-updateChessScoreDisplay();
-alert(`Bạn đã thắng! +${add} điểm`);
-restartGame();
+                                chessScore += add;
+                                saveChessScore();
+                                updateChessScoreDisplay();
+                                alert(`Bạn đã thắng! +${add} điểm`);
+                                restartGame();
                             }, 100);
                             return;
                         }
@@ -136,11 +136,11 @@ restartGame();
                     setTimeout(() => {
                         alert('Bạn đã thắng!');
                         let add = aiLevel === 1 ? 10 : aiLevel === 2 ? 50 : 100;
-chessScore += add;
-saveChessScore();
-updateChessScoreDisplay();
-alert(`Bạn đã thắng! +${add} điểm`);
-restartGame();
+                        chessScore += add;
+                        saveChessScore();
+                        updateChessScoreDisplay();
+                        alert(`Bạn đã thắng! +${add} điểm`);
+                        restartGame();
                     }, 100);
                     return;
                 }
@@ -512,9 +512,9 @@ function startTimer() {
     clearInterval(timerInterval);
 
     // Thiết lập thời gian theo cấp độ
-    let timeLimit = 60;
-    if (aiLevel === 2) timeLimit = 30;
-    if (aiLevel === 3) timeLimit = 10;
+    let timeLimit = 300;
+    if (aiLevel === 2) timeLimit = 240;
+    if (aiLevel === 3) timeLimit = 60;
 
     // Reset thời gian cho bên vừa đi
     if (turn === 'w') {
@@ -561,9 +561,9 @@ function restartGame() {
     turn = 'w';
 
     // Thiết lập thời gian theo cấp độ
-    let timeLimit = 60;
-    if (aiLevel === 2) timeLimit = 30;
-    if (aiLevel === 3) timeLimit = 10;
+    let timeLimit = 300;
+    if (aiLevel === 2) timeLimit = 240;
+    if (aiLevel === 3) timeLimit = 60;
     whiteTime = timeLimit;
     blackTime = timeLimit;
 

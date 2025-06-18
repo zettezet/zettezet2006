@@ -412,28 +412,46 @@
     </footer>
     <!-- Đặt đoạn script Firebase ở đây -->
     <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBapipMwd8HaTo8Z5f2Sau-dJG_ybKY7DE",
-    authDomain: "diem-danh-eecbe.firebaseapp.com",
-    projectId: "diem-danh-eecbe",
-    storageBucket: "diem-danh-eecbe.firebasestorage.app",
-    messagingSenderId: "930947360552",
-    appId: "1:930947360552:web:7e5c26093d2f74f20c521d",
-    measurementId: "G-0WCGN0JZB3"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyBapipMwd8HaTo8Z5f2Sau-dJG_ybKY7DE",
+  authDomain: "diem-danh-eecbe.firebaseapp.com",
+  projectId: "diem-danh-eecbe",
+  storageBucket: "diem-danh-eecbe.firebasestorage.app",
+  messagingSenderId: "930947360552",
+  appId: "1:930947360552:web:7e5c26093d2f74f20c521d",
+  measurementId: "G-0WCGN0JZB3",
+  databaseURL: "https://diem-danh-eecbe-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+// Lưu danh sách thành viên
+function saveMembers(members) {
+  set(ref(db, "members"), members);
+}
+
+// Lắng nghe thay đổi danh sách thành viên (tự động đồng bộ)
+onValue(ref(db, "members"), (snapshot) => {
+  const members = snapshot.val() || [];
+  // Cập nhật giao diện với members mới nhất
+  renderMembers(members);
+});
+
+// Lưu danh sách điểm danh
+function saveAttList(attList) {
+  set(ref(db, "attList"), attList);
+}
+
+// Lắng nghe thay đổi danh sách điểm danh (tự động đồng bộ)
+onValue(ref(db, "attList"), (snapshot) => {
+  const attList = snapshot.val() || [];
+  // Cập nhật giao diện với attList mới nhất
+  renderAttList(attList);
+});
+    </script>
     <script>
         // Ripple effect for all buttons
         document.addEventListener('click', function(e) {

@@ -408,8 +408,32 @@
         <button class="clear-btn" id="clearBtn"><i class="fa-solid fa-trash"></i> Xóa toàn bộ điểm danh</button>
     </div>
     <footer>
-        © 2025 Điểm Danh Thành Viên | Thiết kế bởi bạn
+        © 2025 Điểm Danh Thành Viên | zettezet
     </footer>
+    <!-- Đặt đoạn script Firebase ở đây -->
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBapipMwd8HaTo8Z5f2Sau-dJG_ybKY7DE",
+    authDomain: "diem-danh-eecbe.firebaseapp.com",
+    projectId: "diem-danh-eecbe",
+    storageBucket: "diem-danh-eecbe.firebasestorage.app",
+    messagingSenderId: "930947360552",
+    appId: "1:930947360552:web:7e5c26093d2f74f20c521d",
+    measurementId: "G-0WCGN0JZB3"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
     <script>
         // Ripple effect for all buttons
         document.addEventListener('click', function(e) {
@@ -469,6 +493,9 @@
             }
             members.push(name);
             localStorage.setItem('members', JSON.stringify(members));
+            // Khi thêm thành viên:
+set(ref(db, "members"), membersArray);
+
             renderMembers();
             this.reset();
             renderAbsent();
@@ -511,6 +538,9 @@
             const time = now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit', second:'2-digit'});
             attList.push({name, time});
             localStorage.setItem('attList', JSON.stringify(attList));
+            // Khi điểm danh:
+set(ref(db, "attList"), attListArray);
+
             renderList(true, name);
             renderAbsent();
             this.reset();
@@ -576,6 +606,14 @@
                 showToast("Đã xóa toàn bộ điểm danh!");
             }
         };
+
+        // Khi tải trang:
+onValue(ref(db, "members"), (snapshot) => {
+  // Cập nhật giao diện với dữ liệu mới nhất từ Firebase
+});
+onValue(ref(db, "attList"), (snapshot) => {
+  // Cập nhật giao diện với dữ liệu mới nhất từ Firebase
+});
     </script>
 </body>
 </html>

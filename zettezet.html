@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QR code zalo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: linear-gradient(135deg, #232526 0%, #00ffe7 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ngau-card {
+            background: rgba(30, 34, 40, 0.96);
+            border-radius: 32px;
+            box-shadow: 0 8px 48px #00ffe7cc, 0 0 32px #ffe06655 inset;
+            padding: 38px 32px 32px 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.2s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .ngau-avatar {
+            width: 220px;
+            height: 220px;
+            border-radius: 18px;
+            border: 6px solid #00ffe7;
+            box-shadow: 0 0 32px #00ffe7cc, 0 0 32px #ffe06655 inset, 0 0 0 8px #232526;
+            object-fit: cover;
+            margin-bottom: 22px;
+            background: #fff;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+
+        .ngau-avatar:hover {
+            box-shadow: 0 0 64px #ffe066cc, 0 0 32px #00ffe7cc inset, 0 0 0 12px #ff6f61;
+            transform: scale(1.06) rotate(-2deg);
+        }
+
+        .ngau-name {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #00ffe7;
+            text-shadow: 0 2px 32px #ffe066, 0 0 32px #00ffe7;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ngau-quote {
+            font-size: 1.13rem;
+            color: #ffe066;
+            margin-bottom: 18px;
+            font-family: 'Fira Mono', monospace;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #232526;
+            animation: quoteGlow 2s infinite alternate;
+        }
+
+        @keyframes quoteGlow {
+            0% {
+                text-shadow: 0 0 8px #232526, 0 0 16px #00ffe7;
+            }
+
+            100% {
+                text-shadow: 0 0 24px #ffe066, 0 0 32px #00ffe7;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .ngau-card {
+                padding: 18px 2vw;
+            }
+
+            .ngau-avatar {
+                width: 120px;
+                height: 120px;
+                border-radius: 10px;
+            }
+
+            .ngau-name {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ngau-card">
+        <img class="ngau-avatar" src="/1.png" alt="zettezet">
+        <div class="ngau-name">ZETTEZET</div>
+        <div class="ngau-quote">"Không ai sinh ra đã giỏi, nhưng ai cũng có thể trở nên giỏi nếu không ngừng học hỏi và
+            kiên trì."</div>
+    </div>
+</body>
+
+</html>

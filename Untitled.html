@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>zettezet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: linear-gradient(135deg, #232526 0%, #00ffe7 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: rgba(30, 34, 40, 0.95);
+      border-radius: 24px;
+      box-shadow: 0 8px 48px #00ffe7cc, 0 0 32px #ffe06655 inset;
+      padding: 38px 32px 32px 32px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #00ffe7;
+      box-shadow: 0 0 24px #00ffe7cc, 0 0 32px #ffe06655 inset;
+      object-fit: cover;
+      margin-bottom: 18px;
+      background: #fff;
+    }
+
+    .name {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #00ffe7;
+      text-shadow: 0 2px 32px #ffe066, 0 0 32px #00ffe7;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+
+    .typewriter {
+      font-size: 1.1rem;
+      font-family: 'Fira Mono', monospace;
+      color: #ffe066;
+      margin-bottom: 18px;
+      min-height: 28px;
+      letter-spacing: 1px;
+      border-right: 2px solid #ffe066;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink 1s infinite step-end;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        border-color: #ffe066;
+      }
+
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    .desc {
+      font-size: 1.08rem;
+      color: #fffbe6;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .socials {
+      margin: 18px 0 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .socials a {
+      color: #00ffe7;
+      font-size: 1.5rem;
+      transition: color 0.18s, transform 0.13s;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: #ffe066;
+      transform: scale(1.18);
+    }
+
+    .contact-btn {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      padding: 10px 38px;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #00ffe7 0%, #ff6f61 100%);
+      color: #232526;
+      font-weight: bold;
+      box-shadow: 0 0 18px #00ffe7, 0 0 8px #ff6f61;
+      letter-spacing: 2px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.13s;
+    }
+
+    .contact-btn:active {
+      transform: scale(0.97);
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 22px 6vw;
+      }
+
+      .avatar {
+        width: 90px;
+        height: 90px;
+      }
+
+      .name {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+  <div class="card">
+    <img class="avatar" src="/2.png" alt="Avatar" id="avatar-img" style="cursor:pointer;">
+    <div class="name">zettezet</div>
+    <div class="typewriter" id="typewriter"></div>
+    <div class="desc">
+      <span style="color:#00ffe7;">"Code không chỉ là lệnh, mà là cách ta nói chuyện với tương lai."</span>
+    </div>
+    <div class="socials">
+      <a href="https://www.facebook.com/zet.te.zet.547879" target="_blank" title="Facebook"><i
+          class="fab fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@star.zettezet?lang=vi-VN" target="_blank" title="TikTok"><i
+          class="fab fa-tiktok"></i></a>
+      <a href="mailto:youremail@email.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="z" target="_blank" title="Zalo"><i class="fab fa-telegram"></i></a>
+    </div>
+    <button class="contact-btn" onclick="window.open('zettezet.html')">Liên hệ ngay</button>
+  </div>
+  <!-- Thêm popup phóng to ảnh ngay sau .card -->
+  <div id="avatar-popup"
+    style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;">
+    <img src="/2.png" alt="Avatar lớn"
+      style="max-width:90vw;max-height:90vh;border-radius:24px;box-shadow:0 0 32px #00ffe7cc;">
+    <span style="position:absolute;top:24px;right:38px;font-size:2.5rem;color:#fff;cursor:pointer;font-weight:bold;"
+      onclick="document.getElementById('avatar-popup').style.display='none'">&times;</span>
+  </div>
+  <script>
+    // Hiệu ứng gõ chữ
+    const texts = [
+      "Hoàng Đức Tuệ",
+      "Sinh năm 2006",
+      "Phố Vàng-Thuận Thành-Bắc Ninh",
+      "Cao đẳng FPT Polytechnic",
+      "Lập trình web backend",
+    ];
+    let i = 0, j = 0, isDel = false, wait = 0;
+    const tw = document.getElementById('typewriter');
+    function typeLoop() {
+      if (wait > 0) { wait--; setTimeout(typeLoop, 60); return; }
+      let txt = texts[i].slice(0, j);
+      tw.textContent = txt;
+      if (!isDel && j < texts[i].length) { j++; setTimeout(typeLoop, 55); }
+      else if (!isDel && j === texts[i].length) { isDel = true; wait = 18; setTimeout(typeLoop, 55); }
+      else if (isDel && j > 0) { j--; setTimeout(typeLoop, 28); }
+      else { isDel = false; i = (i + 1) % texts.length; setTimeout(typeLoop, 400); }
+    }
+    typeLoop();
+
+    document.getElementById('avatar-img').onclick = function () {
+      document.getElementById('avatar-popup').style.display = 'flex';
+    };
+  </script>
+</body>
+
+</html>
